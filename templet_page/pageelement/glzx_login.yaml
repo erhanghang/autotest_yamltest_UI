@@ -1,0 +1,17 @@
+glzx_login:
+  dec: 爱学习管理中心登录
+  locators:
+    -
+      name: 账号输入
+      type: id
+      value: userName
+
+    -
+      name: 密码输入
+      type: id
+      value: passWord
+
+    -
+      name: 登录按钮
+      type: css selector
+      value: .loginbtn.fl

@@ -1,0 +1,32 @@
+﻿1、基于python+selenium的UI自动化测试框架，包含了基础方法的二次封装、邮件、报告、截图、执行需要的文件（文件上传）等
+2、是基于page object，简称po模式编写的一套框架
+3、集成了yaml配置，实现脚本与定位完全分离
+框架介绍
+common文件夹：
+    1、baseMethod.py   内置了对于基本方法的二次封装，后续会继续补充常用的
+    2、HTMLTestRunner_cn.py/HTMLTestRunner_PY3.py  兼容py2和py3的两种不同格式的报告模板，UI自动化使用此报告模板，具有错误用例截图以及失败重跑功能
+file文件夹：
+    在脚本正常的运行过程中，有关于文件上传的文件均可放入此文件夹统一管理
+page文件夹：
+    此文件夹放置自动化测试涉及的每一个页面，定义每一个页面的内容，点击，输入，获取页面内容的方法
+report文件夹：
+    此文件夹放置在运行run_all_case.py文件后生成的报告
+screenshot_image文件夹：
+    在脚本执行过程中，遇到某些需要截图的操作，截图放置的位置
+templet_page文件夹：
+    此文件夹集成了yaml配置，使用jinja2来生成模板
+    pageelement文件夹：
+        放置了每个页面的.yaml内容，采用字典套用列表的方式来管理定位方法与定位元素，此文件夹没有init文件
+    readyaml.py文件:
+        采用os.walk()方式来获取文件夹下的所有.yaml的文件，并读取以字典的格式
+    templetpage文件:
+        该文件没有后缀，里边放置模板内容
+    tools.py文件：
+        执行该文件可生成pages.py文件，文件内容是templetpage规定的文件内容
+    pages.py文件：
+        执行tools.py文件时生成的，此文件内容按照templetpage规定格式，包含get_locator方法，以及每个页面的name以及locators
+testCase文件夹：
+    此文件夹包含了所有的测试用例，采用unittest方式
+run_all_case.py文件：
+    在整个框架中，此文件为核心文件，在整个自动化测试用例执行时，运行此单一个文件就OK，通过didcover加载所有用例执行后生成测试报告，并发送邮件到指定的邮箱，完成测试任务
+	

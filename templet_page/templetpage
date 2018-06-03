@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+
+from templet_page import tools
+
+pages = tools.parseyaml()
+
+def get_locater(page_name, method_name):
+    loc=[]
+    locators = pages[page_name]['locators']
+    for locator in locators:
+        if locator['name'] == method_name:
+            loc.append(locator['type'])
+            loc.append(locator['value'])
+            return tuple(loc)
+
+{% for page, locators in  page_list.items() %}
+class {{page}}:{% for locator in locators %}
+    {{locator}} = get_locater('{{page}}', '{{locator}}'){% endfor %}
+    {% endfor %}
