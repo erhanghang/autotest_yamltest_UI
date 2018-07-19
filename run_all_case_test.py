@@ -6,6 +6,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
 import os
+from common.conf.readconfig import ReadConfig
+
+readconfig=ReadConfig()
 
 '''
 #### 下面三行代码python2报告出现乱码时候可以加上####
@@ -98,15 +101,15 @@ if __name__ == "__main__":
     all_case = add_case()   # 1加载用例
     # # 生成测试报告的路径
     run_case(all_case)        # 2执行用例
-    # # 获取最新的测试报告文件
+    # 获取最新的测试报告文件
     report_path = os.path.join(cur_path, "report")  # 用例文件夹
     report_file = get_report_file(report_path)  # 3获取最新的测试报告
     # #邮箱配置
-    sender = "617955991@qq.com"
-    psw = 'swmcaryiqqapbfih'
-    smtp_server = "smtp.qq.com"
-    port = 465
-    receiver = ["944354642@qq.com",'yupeng0310@126.com','yupeng@gaosiedu.com']
-    send_mail(sender, psw, receiver, smtp_server, report_file, port)  # 最后一步发送报告
+    sender = readconfig.get_email('sender')
+    psw = readconfig.get_email('pwd')
+    smtp_server = readconfig.get_email('stmp_server')
+    port = readconfig.get_email('port')
+    receivers = readconfig.get_email('receivers')
+    send_mail(sender, psw, receivers, smtp_server, report_file, port)  # 最后一步发送报告
 
 

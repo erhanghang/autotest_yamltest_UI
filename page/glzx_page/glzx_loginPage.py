@@ -17,11 +17,11 @@ class loginPage(basePage):
 
     def input_username(self):
         '''输入用户名'''
-        self.sendkeys(glzx_login.账号输入,username)
+        self.sendkeys(glzx_login.账号输入, username)
 
     def input_password(self):
         '''输入密码'''
-        self.sendkeys(glzx_login.密码输入,password)
+        self.sendkeys(glzx_login.密码输入, password)
 
     def click_login_button(self):
         '''点击登录按钮'''
@@ -39,9 +39,9 @@ class loginPage(basePage):
         self.click_login_button()
         self.get_gl_title()
 
-if __name__=='__main__':
-    driver=webdriver.Firefox()
-    login=loginPage(driver)
+if __name__ == '__main__':
+    driver = webdriver.Firefox()
+    login = loginPage(driver)
     login.login_glzx()
 # if __name__=='__main__':
 #     pass
